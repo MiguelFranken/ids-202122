@@ -1,0 +1,21 @@
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.10.1.jar \
+-files /usr/local/hadoop/code/pm_mapper1.py,/usr/local/hadoop/code/pm_reducer1.py \
+-mapper "python pm_mapper1.py" \
+-reducer "python pm_reducer1.py" \
+-input /input/MSM-final-log-10.tsv \
+-output /output/DFG01
+
+
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.10.1.jar \
+-files /usr/local/hadoop/code/pm_mapper2.py,/usr/local/hadoop/code/pm_reducer2.py \
+-mapper "python pm_mapper2.py" \
+-reducer "python pm_reducer2.py" \
+-input /output/DFG01/part-00000 \
+-output /output/DFG-final-01
+
+hadoop fs -copyToLocal /output/DFG-final-01/part-00000 /usr/local/hadoop/directly-follows-relation.txt
+
+#cmd
+cd ..
+
+docker cp 7ef903109e60:/usr/local/hadoop/directly-follows-relation.txt C:\Users\owner\OneDrive\Desktop\Hadoop

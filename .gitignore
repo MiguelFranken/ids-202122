@@ -1,0 +1,4 @@
+.idea
+data
+notebooks/generated_logs
+.DS_Store

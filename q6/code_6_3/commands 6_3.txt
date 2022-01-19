@@ -1,0 +1,18 @@
+time hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.10.1.jar \
+-files /usr/local/hadoop/code_6_3/service_time_mapper.py,/usr/local/hadoop/code_6_3/service_time_reducer.py \
+-mapper "python service_time_mapper.py" \
+-reducer "python service_time_reducer.py" \
+-input /input/MSM-final-log-10.tsv \
+-output /output/serviceTimeOutput/
+
+hadoop fs -copyToLocal /output/serviceTimeOutput/part-00000 /usr/local/hadoop/service_time71.txt
+
+
+#cmd
+cd ..
+
+docker cp 7ef903109e60:/usr/local/hadoop/service_time.txt C:\Users\owner\OneDrive\Desktop\Hadoop
+
+
+
+
